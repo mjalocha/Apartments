@@ -231,7 +231,9 @@ class ScrapingGratka(Scraper):
 
                 return self.remove_styling(temp)
             else:
-                temp = [element.text for element in find_in if element.text != '']
+                temp = []
+                for litag in find_in.find_all('li'):
+                    temp.append(litag.text)
 
                 return self.remove_styling(temp)
         except:
@@ -280,7 +282,7 @@ class ScrapingGratka(Scraper):
 
             # Details
             details = self.extract_information_gratka(
-                soup_details("ul", attrs=["class", "parameters__rolled"]).copy(), True)
+                soup_details.find('ul', {'class': 'parameters__rolled'}))
 
             # Description
             description = self.extract_information(self.soup_find_information(soup=soup_details,
