@@ -264,7 +264,7 @@ class ScrapingOtodom(Scraper):
         if any(offers):
             results_offers = offers
         else:
-            results_offers = self.get_offers()
+            results_offers = self.get_offers(split_size=500)
 
         # Create splits to relieve RAM memory
         splitted = self.create_split(links=results_offers, split_size=split_size)
